@@ -1,13 +1,20 @@
-import { connectToDB } from "@utils/database";
-import Issue from "@models/issue";
-
-export const GET = async () => {
+import { useSession } from "next-auth/react";
+import { Octokit } from "octokit";
+export const POST = async (request) => {
+  const accessToken = await request.json().accessToken;
+  //   return new Response("JSON.stringify(res)");
+  const octokit = new Octokit({
+    auth: accessToken,
+  });
   try {
-    await connectToDB();
-    const issues = Issue.find({});
-    return new Response(JSON.stringify(issues), { status: 200 });
-  } catch (error) {
-    console.log(error);
-    return new Response("Some error occurred.", { status: 500 });
+    const res = await octokit.request("GET /issues", {
+      headers: {
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    });
+    console.log(res);
+    return new Response(JSON.stringify(res));
+  } catch (err) {
+    return new Response(JSON.stringify(err));
   }
 };

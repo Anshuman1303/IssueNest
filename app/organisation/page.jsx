@@ -11,20 +11,21 @@ const OrganisationPage = () => {
   }, []);
   return (
     <>
-      {/* <Grid container spacing={2}> */}
-      {/* <Grid item xs={8}> */}
-      <List>
-        {projects.map((project, index) => (
-          <ListItem key={project} divider>
-            <ListItemButton component="a" href="#">
-              <ListItemText primary={project}></ListItemText>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      {/* </Grid> */}
-      {/* <Grid item xs={4}></Grid> */}
-      {/* </Grid> */}
+      <Grid container spacing={2}>
+        {" "}
+        <Grid item xs={8}>
+          <List>
+            {projects.map((project, index) => (
+              <ListItem key={project} divider>
+                <ListItemButton component="a" href="#">
+                  <ListItemText primary={project}></ListItemText>
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Grid>
+        <Grid item xs={4}></Grid>
+      </Grid>
     </>
   );
 };

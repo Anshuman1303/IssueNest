@@ -20,15 +20,16 @@ const Nav = () => {
   }, []);
   function AuthButton() {
     const { data: session } = useSession();
-
     if (session) {
       if (pathname === "/user") {
         return (
           <>
-            <button className="black_btn">Create Issue</button>
-            <button onClick={() => signOut()} className="black_btn">
-              Sign Out{" "}
-            </button>
+            <div className="user-btns">
+              <button className="black_btn">View Projects</button>
+              <button onClick={() => signOut()} className="black_btn">
+                Sign Out{" "}
+              </button>
+            </div>
           </>
         );
       }

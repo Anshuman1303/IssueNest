@@ -7,7 +7,8 @@ import CardComponent from "@components/CardComponent";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
+import { useSession } from "next-auth/react";
 import data from "@models/data";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -17,6 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
+
 const Home = () => {
   const [issues, setIssues] = useState([]);
   let organisations = [
@@ -35,8 +37,23 @@ const Home = () => {
     { name: "A1" },
     { name: "A2" },
   ];
+  const session = useSession();
+  useEffect(() => {
+    const f = async () => {
+      // console.log(session);
+      // if (session.type === "loading") return;
+      const res = await fetch("/api/issues", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ accessToken: session?.data?.accessToken }),
+      });
+      console.log(res);
+    };
+    f();
+  }, [session]);
   useEffect(() => {
     const fetchIssues = async () => {
+      // const data = await res.json();
       //   const res = await fetch("../../models/data.json");
       //   const data = await res.json();
       const is = data.issues;
@@ -62,7 +79,7 @@ const Home = () => {
           <h2>Organisations</h2>
           <List>
             {organisations.map((org, index) => (
-              <>
+              <Fragment key={index}>
                 <ListItem
                   key={org.name}
                   divider={index !== organisations.length - 1}>
@@ -70,7 +87,7 @@ const Home = () => {
                     primary={org.name}
                     className="cp"></ListItemText>
                 </ListItem>
-              </>
+              </Fragment>
             ))}
           </List>
         </Item>
