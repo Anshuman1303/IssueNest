@@ -41,13 +41,14 @@ const Home = () => {
   useEffect(() => {
     const f = async () => {
       // console.log(session);
-      // if (session.type === "loading") return;
+      if (!session?.data?.accessToken) return;
+      console.log(session.data.accessToken);
       const res = await fetch("/api/issues", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ accessToken: session?.data?.accessToken }),
+        body: JSON.stringify({ accessToken: session.data.accessToken }),
       });
-      console.log(res);
+      console.log(await res.json());
     };
     f();
   }, [session]);
@@ -67,11 +68,7 @@ const Home = () => {
       <Grid item xs={8} className="issue-list">
         <h2>Issues assigned to you</h2>
         {issues.map((dataItem, index) => (
-          <CardComponent
-            dataItem={dataItem}
-            key={index}
-            className="card-shadow"
-          />
+          <CardComponent dataItem={dataItem} key={index} className="card-shadow" />
         ))}
       </Grid>
       <Grid item xs={4}>
@@ -80,12 +77,8 @@ const Home = () => {
           <List>
             {organisations.map((org, index) => (
               <Fragment key={index}>
-                <ListItem
-                  key={org.name}
-                  divider={index !== organisations.length - 1}>
-                  <ListItemText
-                    primary={org.name}
-                    className="cp"></ListItemText>
+                <ListItem key={org.name} divider={index !== organisations.length - 1}>
+                  <ListItemText primary={org.name} className="cp"></ListItemText>
                 </ListItem>
               </Fragment>
             ))}
