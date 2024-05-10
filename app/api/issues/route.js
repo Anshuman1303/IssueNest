@@ -1,8 +1,6 @@
-import { useSession } from "next-auth/react";
 import { Octokit } from "octokit";
 export const POST = async (request) => {
-  const accessToken = await request.json().accessToken;
-  //   return new Response("JSON.stringify(res)");
+  const accessToken = (await request.json()).accessToken;
   const octokit = new Octokit({
     auth: accessToken,
   });
@@ -12,9 +10,9 @@ export const POST = async (request) => {
         "X-GitHub-Api-Version": "2022-11-28",
       },
     });
-    console.log(res);
-    return new Response(JSON.stringify(res));
+    return new Response(JSON.stringify(res.data));
   } catch (err) {
-    return new Response(JSON.stringify(err));
+    console.log(err);
+    return new Response(err, { status: err.status });
   }
 };

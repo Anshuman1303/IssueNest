@@ -40,14 +40,14 @@ const Home = () => {
   const session = useSession();
   useEffect(() => {
     const f = async () => {
-      console.log(session);
-      if (session.type === "loading") return;
-      /* const res = await fetch("/api/issues", {
+      // console.log(session);
+      // if (session.type === "loading") return;
+      const res = await fetch("/api/issues", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ accessToken: session?.data?.accessToken }),
-      }); */
-      // console.log(await res.json());
+      });
+      console.log(res);
     };
     f();
   }, [session]);
@@ -63,15 +63,11 @@ const Home = () => {
     fetchIssues();
   }, []);
   return (
-    <Grid container spacing={2} sx={{ padding: 2 }}>
+    <Grid container spacing={4} sx={{ padding: 4 }}>
       <Grid item xs={8} className="issue-list">
-        <h2>Issues assigned to you</h2>
+        <h2>Assigned Issues</h2>
         {issues.map((dataItem, index) => (
-          <CardComponent
-            dataItem={dataItem}
-            key={index}
-            className="card-shadow"
-          />
+          <CardComponent dataItem={dataItem} key={index} />
         ))}
       </Grid>
       <Grid item xs={4}>

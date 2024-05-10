@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -43,9 +43,14 @@ a:visited {
   /* FONTS */
 
   /* COLORS */
-
+  --bg1: #010409;
+  --bg2: #010409;
+  --bg3: #0d1117;
+  --fg1: #e6edf3;
+  --border-color1: #30363d;
   /* BORDERS */
-  --gray-border: #888 1px solid;
+  --border1-1px: var(--border-color1) 1px solid;
+  --border1-2px: var(--border-color1) 2px solid;
   /* STANDARD PADDING */
 
   /* STANDARD MARGIN */
@@ -81,15 +86,17 @@ body {
   min-height: 100vh;
   display: flex;
   flex-flow: column nowrap;
+  background: var(--bg2);
+  color: var(--fg1);
+  font-family: Roboto, sans-serif;
 }
 h2 {
   font: 200 3em Inter, sans-serif;
   color: #000;
-  margin: 0 auto;
 }
 h3 {
   font: 400 2em Inter, sans-serif;
-  color: #000;
+  color: var(--fg1);
 }
 .fade-in {
   opacity: 0;
@@ -128,7 +135,8 @@ h3 {
   display: flex;
   padding: 20px 10px 20px 10px;
   justify-content: space-between;
-  border-bottom: var(--gray-border);
+  border-bottom: var(--border1-2px);
+  background: var(--bg2);
 }
 
 .home-banner {
@@ -155,7 +163,7 @@ h3 {
 .issue-list {
   display: flex;
   flex-flow: column nowrap;
-  gap: 1em;
+  gap: 1.5em;
 }
 
 .user-btns {
@@ -168,7 +176,6 @@ h3 {
 }
 
 .card-shadow {
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.12), 0px 4px 4px 0px rgba(0, 0, 0, 0.12),
-    0px 8px 8px 0px rgba(0, 0, 0, 0.12), 0px 16px 16px 0px rgba(0, 0, 0, 0.12);
+  background: var(--bg3);
+  border: var(--border1-1px);
 }
