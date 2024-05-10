@@ -1,14 +1,9 @@
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import GitHubIcon from "@mui/icons-material/GitHub";
-
-const bull = (
-  <Box component="span" sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}>
-    •
-  </Box>
-);
 
 export default function BasicCard({ dataItem }) {
   return (
@@ -23,9 +18,9 @@ export default function BasicCard({ dataItem }) {
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           {dataItem.description}
         </Typography>
-        <button className="black_btn">
+        <Button variant="text" color="primary">
           <GitHubIcon /> &nbsp; Open in GitHub
-        </button>
+        </Button>
       </CardContent>
     </Card>
   );

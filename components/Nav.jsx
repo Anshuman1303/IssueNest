@@ -67,7 +67,7 @@ const Nav = () => {
   return (
     <nav className="nav">
       <Link href="/" className="flex gap-2 flex-center">
-        <h3 className="logo_text">IssueNest</h3>
+        <h4 className="logo_text">IssueNest</h4>
       </Link>
       <AuthButton />
     </nav>
