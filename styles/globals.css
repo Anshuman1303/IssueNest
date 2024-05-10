@@ -155,15 +155,13 @@ h4 {
   justify-content: center;
   flex-flow: column nowrap;
   flex-grow: 1;
+  gap: 1.5em;
 }
 .home-banner h1 {
-  font: 200 10em "Inter", sans-serif;
+  font: 200 10em/0.65em "Inter", sans-serif;
 }
 .home-banner h3 {
   font: 200 2em "Inter", sans-serif;
-}
-.home-banner .black_btn {
-  margin-top: 2em;
 }
 .issue-card {
   text-align: left;
