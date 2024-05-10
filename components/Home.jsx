@@ -41,14 +41,13 @@ const Home = () => {
   useEffect(() => {
     const f = async () => {
       // console.log(session);
-      if (!session?.data?.accessToken) return;
-      console.log(session.data.accessToken);
+      // if (session.type === "loading") return;
       const res = await fetch("/api/issues", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ accessToken: session.data.accessToken }),
+        body: JSON.stringify({ accessToken: session?.data?.accessToken }),
       });
-      console.log(await res.json());
+      console.log(res);
     };
     f();
   }, [session]);
@@ -77,8 +76,12 @@ const Home = () => {
           <List>
             {organisations.map((org, index) => (
               <Fragment key={index}>
-                <ListItem key={org.name} divider={index !== organisations.length - 1}>
-                  <ListItemText primary={org.name} className="cp"></ListItemText>
+                <ListItem
+                  key={org.name}
+                  divider={index !== organisations.length - 1}>
+                  <ListItemText
+                    primary={org.name}
+                    className="cp"></ListItemText>
                 </ListItem>
               </Fragment>
             ))}

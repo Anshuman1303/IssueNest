@@ -4,10 +4,12 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Nav = () => {
   const pathname = usePathname();
   const { data: session } = useSession();
+  const [searchValue, setSearchValue] = useState("");
   const [providers, setProviders] = useState(null);
 
   useEffect(() => {
@@ -18,6 +20,9 @@ const Nav = () => {
     };
     setUpProviders();
   }, []);
+  const handleSearchChange = (e) => {
+    setSearchText(e.target.value);
+  };
   function AuthButton() {
     const { data: session } = useSession();
     if (session) {
@@ -25,6 +30,19 @@ const Nav = () => {
         return (
           <>
             <div className="user-btns">
+              <form>
+                <label htmlFor="nav-search">
+                  <SearchIcon />
+                </label>
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="nav-search"
+                  name="nav-search"
+                  value={searchValue}
+                  onChange={handleSearchChange}
+                />
+              </form>
               <button className="black_btn">View Projects</button>
               <button onClick={() => signOut()} className="black_btn">
                 Sign Out{" "}
@@ -45,7 +63,7 @@ const Nav = () => {
       return (
         <>
           <div className="user-btns">
-            <button className="black_btn">Create Issue</button>
+            <button className="black_btn">View Projects</button>
             <button onClick={() => signIn()} className="black_btn">
               Sign In{" "}
             </button>
