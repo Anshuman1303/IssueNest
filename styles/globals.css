@@ -85,6 +85,7 @@ body {
 h2 {
   font: 200 3em Inter, sans-serif;
   color: #000;
+  margin: 0 auto;
 }
 h3 {
   font: 400 2em Inter, sans-serif;

@@ -40,14 +40,14 @@ const Home = () => {
   const session = useSession();
   useEffect(() => {
     const f = async () => {
-      // console.log(session);
-      // if (session.type === "loading") return;
-      const res = await fetch("/api/issues", {
+      console.log(session);
+      if (session.type === "loading") return;
+      /* const res = await fetch("/api/issues", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ accessToken: session?.data?.accessToken }),
-      });
-      console.log(res);
+      }); */
+      // console.log(await res.json());
     };
     f();
   }, [session]);
