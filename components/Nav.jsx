@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import SearchIcon from "@mui/icons-material/Search";
+import Button from "@mui/material/Button";
 
 const Nav = () => {
   const pathname = usePathname();
@@ -43,19 +44,21 @@ const Nav = () => {
                   onChange={handleSearchChange}
                 />
               </form>
-              <button className="black_btn">View Projects</button>
-              <button onClick={() => signOut()} className="black_btn">
+              <Button variant="outlined" color="secondary">
+                View Projects
+              </Button>
+              <Button onClick={() => signOut()} variant="outlined" color="secondary">
                 Sign Out{" "}
-              </button>
+              </Button>
             </div>
           </>
         );
       }
       return (
         <>
-          <button onClick={() => signOut()} className="black_btn">
+          <Button onClick={() => signOut()} variant="outlined" color="secondary">
             Sign Out{" "}
-          </button>
+          </Button>
         </>
       );
     }
@@ -63,10 +66,12 @@ const Nav = () => {
       return (
         <>
           <div className="user-btns">
-            <button className="black_btn">View Projects</button>
-            <button onClick={() => signIn()} className="black_btn">
+            <Button variant="outlined" color="secondary">
+              View Projects
+            </Button>
+            <Button onClick={() => signIn()} variant="outlined" color="secondary">
               Sign In{" "}
-            </button>
+            </Button>
           </div>
         </>
       );
@@ -74,9 +79,9 @@ const Nav = () => {
     return (
       <>
         <div>
-          <button onClick={() => signIn()} className="black_btn">
+          <Button onClick={() => signIn()} variant="outlined" color="secondary">
             Sign In{" "}
-          </button>
+          </Button>
         </div>
       </>
     );

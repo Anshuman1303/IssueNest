@@ -9,14 +9,12 @@ import FormControl from "@mui/material/FormControl";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import "./page.css";
 
 function getStyles(stack, stackName, theme) {
   return {
-    fontWeight:
-      stackName.indexOf(stack) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+    fontWeight: stackName.indexOf(stack) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
   };
 }
 export default function page() {
@@ -64,6 +62,9 @@ export default function page() {
     <div className="register-form-wrap">
       <Box className="register-form" component="form">
         <FormControl fullWidth>
+          <TextField id="token" label="Github Token" variant="outlined" />
+        </FormControl>
+        <FormControl fullWidth>
           <InputLabel id="stackLabel">Tech Stack</InputLabel>
           <Select
             labelId="stackLabel"
@@ -71,9 +72,7 @@ export default function page() {
             multiple
             value={stackName}
             onChange={handleChange}
-            input={
-              <OutlinedInput id="select-multiple-stack" label="Tech Stack" />
-            }
+            input={<OutlinedInput id="select-multiple-stack" label="Tech Stack" />}
             renderValue={(selected) => (
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                 {selected.map((value) => (
@@ -83,10 +82,7 @@ export default function page() {
             )}
             MenuProps={MenuProps}>
             {stacks.map((stack) => (
-              <MenuItem
-                key={stack}
-                value={stack}
-                style={getStyles(stack, stackName, theme)}>
+              <MenuItem key={stack} value={stack} style={getStyles(stack, stackName, theme)}>
                 {stack}
               </MenuItem>
             ))}
@@ -94,19 +90,16 @@ export default function page() {
         </FormControl>
         <FormControl fullWidth>
           <InputLabel id="levelLabel">Level</InputLabel>
-          <Select
-            labelId="levelLabel"
-            id="demo-simple-select"
-            value={level}
-            label="Level"
-            onChange={(e) => setLevel(e.target.value)}>
+          <Select labelId="levelLabel" id="demo-simple-select" value={level} label="Level" onChange={(e) => setLevel(e.target.value)}>
             <MenuItem value={0}>Beginner</MenuItem>
             <MenuItem value={1}>Intermediate</MenuItem>
             <MenuItem value={2}>Advanced</MenuItem>
             <MenuItem value={3}>Professional</MenuItem>
           </Select>
         </FormControl>
-        <button className="black_btn">Submit</button>
+        <Button size="large" variant="outlined" color="secondary">
+          Submit
+        </Button>
       </Box>
     </div>
   );

@@ -46,7 +46,8 @@ a:visited {
   --bg1: #010409;
   --bg2: #010409;
   --bg3: #0d1117;
-  --fg1: #e6edf3;
+  --fg1: #fff;
+  --fg2: #e6edf3;
   --blue: #4493f8;
   --border-color1: #30363d;
   /* BORDERS */
@@ -88,20 +89,20 @@ body {
   display: flex;
   flex-flow: column nowrap;
   background: var(--bg2);
-  color: var(--fg1);
+  color: var(--fg2);
   font-family: Roboto, sans-serif;
 }
 h2 {
   font: 200 3em Inter, sans-serif;
-  color: var(--fg1);
+  color: var(--fg2);
 }
 h3 {
   font: 400 2em Inter, sans-serif;
-  color: var(--fg1);
+  color: var(--fg2);
 }
 h4 {
   font: 500 1.5em Inter, sans-serif;
-  color: var(--fg1);
+  color: var(--fg2);
 }
 .fade-in {
   opacity: 0;
